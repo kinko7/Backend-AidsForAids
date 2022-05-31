@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { bulkEvents } = require('../controllers/bulkevents.js')
+const { bulkBooks } = require('../controllers/bulkBooks.js')
 
 
 const router = Router();
 
-router.post('/', bulkEvents);
+router.post('/', bulkBooks);
 
 
 

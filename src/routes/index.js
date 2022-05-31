@@ -1,14 +1,14 @@
 const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const events = require('./events.js');
-const event = require('./event.js');
-const bulkevents = require ('./bulkevents.js');
+const books = require('./books.js');
+const book = require('./book.js');
+const bulkBooks = require ('./bulkBooks.js');
 const google = require('./google.js');
 const login = require('./login.js');
 const users = require('./users.js');
 const mercadopago = require('./mercadopago.js');
-const tickets = require('./tickets.js');
+const purchases = require('./purchases.js');
 const paypal = require('./paypal.js');
 const resetPass = require('./resetPassword.js');
 const stats = require('./stats.js');
@@ -21,13 +21,13 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use('/events', events );
-router.use('/bulkevents', bulkevents );
+router.use('/books', books );
+router.use('/bulkBooks', bulkBooks );
 
 
-router.use('/event', event);
+router.use('/book', book);
 router.use('/users', users);
-router.use('/tickets', tickets);
+router.use('/purchases', purchases);
 router.use('/password', resetPass);
 router.use('/stats', stats);
 router.use('/confirm', confirmPass);

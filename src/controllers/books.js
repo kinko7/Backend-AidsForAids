@@ -1,25 +1,25 @@
 
-const { Events,Tickets, Users } = require("../db");
+const { Books,Purchases, Users } = require("../db");
 
 async function finder() {
-  const dataBase = await Events.findAll({});
+  const dataBase = await Books.findAll({});
   if (dataBase.length > 0) {
-    const eventDb = dataBase.map((data) => {
+    const eventDb = dataBase.map((results) => {
       return {
-        title: data.title,
-        isbn: data.isbn,
-        author:data.author,
-        editor: data.editor,
-        price: data.price,
-        availableBooks:data.availableBooks,
-        totalBooks:data.totalBooks
+        title: results.title,
+        isbn: results.isbn,
+        author:results.author,
+        editor: results.editor,
+        price: results.price,
+        availableBooks:results.availableBooks,
+        totalBooks:results.totalBooks
       };
     });
     return eventDb
   } else return []
 }
 
-async function getAllEvents(req, res) {
+async function getAllBooks(req, res) {
 
   try {
    
@@ -41,15 +41,15 @@ async function getAllEvents(req, res) {
 async function getRecommended(req, res) {
   const { userId } = req.query
   try {
-    const allEvents = await finder()
+    const allBooks = await finder()
 
-    const userTickets = await Tickets.findAll({
+    const userPurchases = await Purchases.findAll({
       where: {
         userId: userId
       },
       include: [
         {
-          model: Events,
+          model: Books,
         },
         {
           model: Users,
@@ -57,17 +57,17 @@ async function getRecommended(req, res) {
       ]
     });
 
-    if (userTickets.length > 0) {
+    if (userPurchases.length > 0) {
     
-      const alreadyEvents = [] 
+      const alreadyBooks = [] 
 
-      userTickets.map(async t =>{
-        const event = allEvents.filter(e=>e.id===t.eventId)
+      userPurchases.map(async t =>{
+        const event = allBooks.filter(e=>e.id===t.eventId)
     
-        alreadyEvents.push(event[0].title)        
+        alreadyBooks.push(event[0].title)        
       })
-      const restEvents = []
-      allEvents.map(e=>!alreadyEvents.includes(e.title)? restEvents.push(e):null)
+      const restBooks = []
+      allBooks.map(e=>!alreadyBooks.includes(e.title)? restBooks.push(e):null)
       const recommended = []
      
       if (recommended.length > 0) return res.send(recommended)
@@ -83,6 +83,6 @@ async function getRecommended(req, res) {
 
 module.exports = {
   getRecommended,
-  getAllEvents,
+  getAllBooks,
   finder
 };

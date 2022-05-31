@@ -1,5 +1,5 @@
 const { Tickets, Users, Events } = require("../db.js");
-const { finder } = require('./events')
+const { finder } = require('./books')
 
 
 function removeDuplicates(originalArray, prop) {

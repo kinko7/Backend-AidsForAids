@@ -1,5 +1,5 @@
 {
-  "events": [
+  "books": [
     {
 
       "title": "Tocala de nuevo Sam",
@@ -80,6 +80,14 @@
       "isbn": "333676665666534",
       "availableBooks":16,
       "price": 1680
+    },
+    {
+      "title": "La Gaviota",
+      "isbn": "333789266534",
+      "author": "Anton Chejov",
+      "editor": "Plazzia",
+      "price": 680,
+      "availableBooks": 11
     }
   ]
 }

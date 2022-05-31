@@ -1,12 +1,12 @@
-const { Events } = require("../db");
+const { Books } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 
-async function AddEvent(req, res, next) {
+async function AddBook(req, res, next) {
   const id = uuidv4();
   let data = { ...req.body, id };
 
   try {
-    const createdEvent = await Events.create({
+    const createdBook = await Books.create({
       title: data.title,
       isbn: data.isbn,
       editor: data.editor,
@@ -16,7 +16,7 @@ async function AddEvent(req, res, next) {
       totalBooks:data.totalBooks
     });
     
-    return res.send("Evento Creado Satisfactoriamente");
+    return res.send("Booko Creado Satisfactoriamente");
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -25,25 +25,25 @@ async function AddEvent(req, res, next) {
 
 
 async function updateAvailable(req, res, next) {
-  let { eventId, cantidad } = req.query;
+  let { bookId, cantidad } = req.query;
 
 
   try {
-    const before = await Events.findByPk(
-      eventId
+    const before = await Books.findByPk(
+      bookId
     )
    
-    const evento = await Events.update(
+    const libro = await Books.update(
       {
         availableBooks: before.availableBooks - cantidad
       },
       {
         where: {
-          id: eventId,
+          id: bookId,
         },
       }
     );
-    res.json(evento)
+    res.json(libro)
 
   } catch (error) {
     next(error)
@@ -52,6 +52,6 @@ async function updateAvailable(req, res, next) {
 
 
 module.exports = {
-  AddEvent,
+  AddBook,
   updateAvailable
 };

@@ -1,19 +1,19 @@
-const { Events } = require("../db.js");
+const { Books } = require("../db.js");
 const { v4: uuidv4 } = require("uuid");
-const { finder } = require('./events.js')
+const { finder } = require('./Books.js')
 
-async function bulkEvents(req, res) {
+async function bulkBooks(req, res) {
 
     let data = { ...req.body };
     try {
-        const existentEvents = await finder()
+        const existentBooks = await finder()
 
        
             let valores = Object.values(data);
            
             valores.map(async e=>{
 
-                const createdEvent = await Events.create({
+                const createdEvent = await Books.create({
                     id: uuidv4(),
                     title: e.title,
                     isbn: e.isbn,
@@ -37,5 +37,5 @@ async function bulkEvents(req, res) {
 }
 
 module.exports = {
-    bulkEvents,
+    bulkBooks,
 };

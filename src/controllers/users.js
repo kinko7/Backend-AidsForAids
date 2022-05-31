@@ -49,7 +49,7 @@ async function updateUser(req, res, next){
 
       } = req.body;
       try {
-        await Events.update(
+        await Books.update(
           {
             address,
             picture
@@ -62,7 +62,7 @@ async function updateUser(req, res, next){
           }
         );
     
-        let eventUpdated = await Events.findByPk(id);
+        let eventUpdated = await Books.findByPk(id);
       
     
         res.json(eventUpdated)
