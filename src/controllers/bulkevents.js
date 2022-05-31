@@ -1,4 +1,4 @@
-const { Event } = require("../db.js");
+const { Events } = require("../db.js");
 const { v4: uuidv4 } = require("uuid");
 const { finder } = require('./events.js')
 
@@ -15,13 +15,12 @@ async function bulkEvents(req, res) {
 
                 const createdEvent = await Events.create({
                     id: uuidv4(),
-                    title: data.title,
-                    isbn: data.isbn,
-                    editor: data.editor,
-                    price: data.price,
-                    availableBooks:data.availableBooks,
-                    // availableTickets: data.availableTickets,
-                    isImportant: data.isImportant,
+                    title: e.title,
+                    isbn: e.isbn,
+                    editor: e.editor,
+                    price: e.price,
+                    availableBooks:e.availableBooks,
+                    totalBooks:e.totalBooks
                 });
                
                 });

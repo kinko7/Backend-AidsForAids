@@ -80,7 +80,7 @@ async function timeVStickets(req, res){
             ]
         });
         const data = []
-        data.push({availableTickets: event.totalTickets, date:event.createdAt.toISOString().split('T')[0]})
+        data.push({availableBooks: event.totalTickets, date:event.createdAt.toISOString().split('T')[0]})
         const eventTickets= tickets.filter(t=>t.eventId===event.id)
         const ticketsDates=[]
         const ticketsSelled=[]
@@ -94,11 +94,11 @@ async function timeVStickets(req, res){
         while(available>0 && ticketsSelledUnique.length>0){
             ticketsSelledUnique.map(obj=>{
                 available=available-obj.cant
-                data.push({availableTickets:available, date:obj.date})
+                data.push({availableBooks:available, date:obj.date})
             })
             ticketsSelledUnique.shift()
         }
-        data.push({availableTickets:available, date:event.date})
+        data.push({availableBooks:available, date:event.date})
         console.log('data sin repetidos con inicio y fecha de expiracion del evento', data)
         return res.send(data)
     }catch(err){console.log(err)}

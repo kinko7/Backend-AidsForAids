@@ -12,7 +12,7 @@ async function finder() {
         editor: data.editor,
         price: data.price,
         availableBooks:data.availableBooks,
-        isImportant: data.isImportant,
+        totalBooks:data.totalBooks
       };
     });
     return eventDb

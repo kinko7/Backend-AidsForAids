@@ -25,7 +25,6 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       }, 
-      
       availableBooks: {
         type: DataTypes.INTEGER,
         allowNull: false,

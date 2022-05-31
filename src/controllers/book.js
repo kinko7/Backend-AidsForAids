@@ -13,7 +13,7 @@ async function AddEvent(req, res, next) {
       price: data.price,
       author:data.author,
       availableBooks: data.availableBooks,
-      isImportant: data.isImportant,
+      totalBooks:data.totalBooks
     });
     
     return res.send("Evento Creado Satisfactoriamente");
@@ -35,7 +35,7 @@ async function updateAvailable(req, res, next) {
    
     const evento = await Events.update(
       {
-        availableTickets: before.availableTickets - cantidad
+        availableBooks: before.availableBooks - cantidad
       },
       {
         where: {
